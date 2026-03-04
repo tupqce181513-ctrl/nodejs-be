@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body id="body"
+  class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 transition-all duration-700">
+
+  <div class="text-center text-white p-8">
+
+    <h1 class="text-5xl font-bold mb-4 animate-bounce">
+      Xin chào <%= username %>
+    </h1>
+
+    <p id="quote" class="text-xl mb-8 opacity-90">
+      Nhấn nút bên dưới để xem điều bất ngờ ✨
+    </p>
+
+    <div class="flex gap-4 justify-center flex-wrap">
+
+      <button onclick="changeColor()"
+        class="bg-white text-indigo-600 font-semibold px-6 py-3 rounded-2xl shadow-xl hover:scale-110 hover:bg-gray-100 transition-all duration-300">
+        Đổi màu nền
+      </button>
+
+      <button onclick="randomQuote()"
+        class="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-2xl shadow-xl hover:scale-110 hover:bg-yellow-300 transition-all duration-300">
+        Random câu vui
+      </button>
+
+    </div>
+
+  </div>
+
+  <script>
+    const gradients = [
+      "from-indigo-500 to-purple-600",
+      "from-pink-500 to-red-500",
+      "from-green-400 to-blue-500",
+      "from-yellow-400 to-orange-500",
+      "from-cyan-500 to-teal-500"
+    ];
+
+    const quotes = [
+      "Deploy không lỗi là phép màu",
+      "Bug chỉ là tính năng chưa được mô tả",
+      "Code chạy là được",
+      "Uống nước đi dev ơi",
+      "Bạn vừa +10 động lực"
+    ];
+
+    function changeColor() {
+      const body = document.getElementById("body");
+      const random = gradients[Math.floor(Math.random() * gradients.length)];
+
+      body.className =
+        "min-h-screen flex items-center justify-center bg-gradient-to-br transition-all duration-700 " +
+        random;
+    }
+
+    function randomQuote() {
+      const quote = document.getElementById("quote");
+      const random = quotes[Math.floor(Math.random() * quotes.length)];
+
+      quote.innerText = random;
+      quote.classList.add("scale-110");
+
+      setTimeout(() => {
+        quote.classList.remove("scale-110");
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
